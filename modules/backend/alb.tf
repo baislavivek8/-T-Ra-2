@@ -545,8 +545,8 @@ resource "aws_lb_listener_rule" "pam_api_comm" {
 
 ############################################### ROUTE 10 ###########################################################################
 # Target Group Creation PAM API
-resource "aws_lb_target_group" "pam_api_reporting_tg" {
-  name = "${var.client_name}-${var.environment}-pam-api-reporting-TG"
+resource "aws_lb_target_group" "pam_api_report_tg" {
+  name = "${var.client_name}-${var.environment}-pam-api-report-TG"
   port = 3004
   protocol = "HTTP"
   vpc_id = var.vpc_id
@@ -566,26 +566,26 @@ resource "aws_lb_target_group" "pam_api_reporting_tg" {
   }
 
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-pam-api-reporting-TG"
+    "Name" = "${var.client_name}-${var.environment}-pam-api-report-TG"
     "Environment" = var.environment
   }
 }
 
 #TG Attachment RMS OLA
-resource "aws_lb_target_group_attachment" "pam_api_reporting" {
-  target_group_arn = aws_lb_target_group.pam_api_reporting_tg.arn
+resource "aws_lb_target_group_attachment" "pam_api_report" {
+  target_group_arn = aws_lb_target_group.pam_api_report_tg.arn
   target_id        = aws_instance.pam_frontend.id
   port             = 3004
 }
 
 # Route RMS OLA
-resource "aws_lb_listener_rule" "pam_api_reporting" {
+resource "aws_lb_listener_rule" "pam_api_report" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
   priority     = 100
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.pam_api_reporting_tg.arn
+    target_group_arn = aws_lb_target_group.pam_api_report_tg.arn
   }
 
   condition {
@@ -1079,7 +1079,7 @@ resource "aws_lb_listener_rule" "comm_backend" {
 ############################################### ROUTE 19 ###########################################################################
 # Target Group Creation PAM
 resource "aws_lb_target_group" "reporting_backend_tg" {
-  name = "${var.client_name}-${var.environment}-reporting-backend-TG"
+  name = "${var.client_name}-${var.environment}-reporting-bkd-TG"
   port = 8083
   protocol = "HTTP"
   vpc_id = var.vpc_id
@@ -1099,7 +1099,7 @@ resource "aws_lb_target_group" "reporting_backend_tg" {
   }
 
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-reporting-backend-TG"
+    "Name" = "${var.client_name}-${var.environment}-reporting-bkd-TG"
     "Environment" = var.environment
   }
 }
