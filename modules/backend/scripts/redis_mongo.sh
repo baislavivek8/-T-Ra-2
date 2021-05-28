@@ -149,7 +149,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -164,7 +164,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -179,3 +179,25 @@ echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 [ $? -eq 0 ] && echo "file has been appended" || echo "Failed to append!"
 systemctl restart sshd
 [ $? -eq 0 ] && echo "service has been started" || echo "service has been not started"
+
+
+############# Install MongoDB v4 and Redis ###############################################################
+
+cat << EOL > /etc/yum.repos.d/mongodb-org-4.0.repo
+[mongodb-org-4.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+EOL
+
+yum install -y mongodb-org
+systemctl enable mongod
+systemctl start mongod
+
+yum install -y redis
+systemctl enable redis
+systemctl start redis
+
+

@@ -149,7 +149,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -164,7 +164,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -179,3 +179,28 @@ echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 [ $? -eq 0 ] && echo "file has been appended" || echo "Failed to append!"
 systemctl restart sshd
 [ $? -eq 0 ] && echo "service has been started" || echo "service has been not started"
+
+
+
+############# Install mysql 5.5 for weaver ###################################
+cd /usr/local/
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.5.46-linux2.6-x86_64.tar.gz
+tar -zxf mysql-5.5.46-linux2.6-x86_64.tar.gz
+yum -y install libaio
+mv mysql-5.5.46-linux2.6-x86_64 mysql
+groupadd mysql
+useradd -r -g mysql mysql
+chown -R mysql:mysql mysql
+chmod -R 755 mysql
+touch /etc/my.cnf
+cd mysql
+scripts/mysql_install_db --user=mysql
+bin/mysqld_safe --user=mysql &
+cp support-files/mysql.server /etc/init.d/mysqld
+echo "export PATH=${PATH}:/usr/local/mysql/bin" >> /etc/bashrc
+chmod +x /etc/init.d/mysqld
+/etc/init.d/mysqld restart
+systemctl enable mysqld
+bin/mysqladmin -u root password 'SkilRock@123'
+
+

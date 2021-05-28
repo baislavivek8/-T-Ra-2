@@ -179,3 +179,11 @@ echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 [ $? -eq 0 ] && echo "file has been appended" || echo "Failed to append!"
 systemctl restart sshd
 [ $? -eq 0 ] && echo "service has been started" || echo "service has been not started"
+
+############################ Node installation #############################
+
+yum remove node* -y
+yum install gcc-c++ make -y
+yum groupinstall 'Development Tools' -y
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+yum -y install nodejs

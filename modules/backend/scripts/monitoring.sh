@@ -149,7 +149,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -164,7 +164,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
