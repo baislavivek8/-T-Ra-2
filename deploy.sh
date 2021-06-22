@@ -3,11 +3,11 @@
 BOLD='\033[1m'
 CYAN='\033[1;36m'
 
-echo -e "${CYAN}${BOLD}Please select the environment you want to deploy !\n\n1. UAT \n2. PROD"
+echo -e "${CYAN}${BOLD}Please select the environment you want to deploy !\n\n1. UAT \n2. PROD\n"
 read -p "Environment :" env
 echo -e "${CYAN}${BOLD}Please provide the absolute path of the Terraform Variables file"
 read -p "Terraform Variables File Path :" path
-echo -e "${CYAN}${BOLD}Please select the modules you want to deploy\n\n 1. RMS-OLA 2. PAM 3. WEAVER 4. ALL"
+echo -e "${CYAN}${BOLD}Please select the modules you want to deploy\n\n 1. RMS-OLA \n2. PAM \n3. WEAVER \n4. ALL\n"
 read -p "Module(s) Name :" module_name
 
         if [[ $env == "UAT" ]]
