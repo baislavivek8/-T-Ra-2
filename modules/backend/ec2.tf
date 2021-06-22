@@ -1,7 +1,7 @@
 resource "aws_instance" "monitoring" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.small"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/monitoring.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/monitoring.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = true
@@ -17,7 +17,7 @@ resource "aws_instance" "monitoring" {
 resource "aws_instance" "rms_ola" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.medium"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/rms_ola.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/rms_ola.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = false
@@ -34,7 +34,7 @@ resource "aws_instance" "rms_ola" {
   resource "aws_instance" "pam_backend" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.large"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/pam_backend.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/pam_backend.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = false
@@ -51,7 +51,7 @@ resource "aws_instance" "rms_ola" {
   resource "aws_instance" "pam_frontend" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.medium"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/pam_frontend.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/pam_frontend.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = false
@@ -68,7 +68,7 @@ resource "aws_instance" "rms_ola" {
   resource "aws_instance" "redis_mongo" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.small"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/redis_mongo.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/redis_mongo.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = false
@@ -85,7 +85,7 @@ resource "aws_instance" "rms_ola" {
   resource "aws_instance" "weaver_db" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.small"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/weaver_db.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/weaver_db.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = false
@@ -102,7 +102,7 @@ resource "aws_instance" "rms_ola" {
   resource "aws_instance" "weaver_api_doc" {
   ami           = "${var.ami_id}"
   instance_type = "t3a.medium"
-  user_data     = "${file("~/Desktop/skilrock-infra/modules/backend/scripts/weaver_api.sh")}"
+  user_data     = "${file("/tmp/terraform/modules/backend/scripts/weaver_api.sh")}"
   disable_api_termination = false
   
   associate_public_ip_address = false
