@@ -17,19 +17,19 @@ read -p "Module(s) Name :" module_name
                 
               if [[ $module_name == "PAM" ]]
               then
-                terraform plan \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.pam_backend \--target module.backend.ec2.aws_instance.pam_frontend \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
+                terraform apply \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.pam_backend \--target module.backend.ec2.aws_instance.pam_frontend \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
                 exit 0
               elif [[ $env == "RMS-OLA" ]]
               then
-                terraform plan \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.rms_ola \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.rms_ola_api_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola_api \--target module.backend.aws_lb_listener_rule.rms_ola_api \--target module.backend.aws_lb_target_group.rms_root_tg \--target module.backend.aws_lb_target_group_attachment.rms_root \--target module.backend.aws_lb_listener_rule.rms_root \--target module.backend.aws_lb_target_group.rms_ola_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola \--target module.backend.aws_lb_listener_rule.rms_ola \--target module.backend.aws_lb_target_group.rms_tg \--target module.backend.aws_lb_target_group_attachment.rms \--target module.backend.aws_lb_listener_rule.rms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
+                terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.rms_ola \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.rms_ola_api_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola_api \--target module.backend.aws_lb_listener_rule.rms_ola_api \--target module.backend.aws_lb_target_group.rms_root_tg \--target module.backend.aws_lb_target_group_attachment.rms_root \--target module.backend.aws_lb_listener_rule.rms_root \--target module.backend.aws_lb_target_group.rms_ola_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola \--target module.backend.aws_lb_listener_rule.rms_ola \--target module.backend.aws_lb_target_group.rms_tg \--target module.backend.aws_lb_target_group_attachment.rms \--target module.backend.aws_lb_listener_rule.rms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0
               elif [[ $env == "WEAVER" ]]
               then
-                terraform plan \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.weaver_db \--target module.backend.ec2.aws_instance.weaver_api_doc \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
+                terraform apply \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.weaver_db \--target module.backend.ec2.aws_instance.weaver_api_doc \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
                 exit 0
               elif [[ $env == "ALL" ]]
               then
-                terraform plan \--var-file=$path
+                terraform apply \--var-file=$path
                 exit 0
               else
                 exit 1
@@ -54,7 +54,7 @@ read -p "Module(s) Name :" module_name
                 exit 0
               elif [[ $module_name == "ALL" ]]
               then
-                terraform plan \--var-file=$path
+                terraform apply \--var-file=$path
                 exit 0
               else
                 exit 1
