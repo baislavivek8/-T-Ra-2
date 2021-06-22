@@ -65,7 +65,7 @@ resource "aws_lb_listener_rule" "rms_ola_api" {
 
   condition {
     host_header {
-      values = ["${var.environment}-backoffice-${var.domain_name}"]
+      values = ["backoffice.${var.domain_name}"]
     }
   }
 }
@@ -123,7 +123,7 @@ resource "aws_lb_listener_rule" "rms_root" {
 
   condition {
     host_header {
-      values = ["${var.environment}-rms.${var.domain_name}"]
+      values = ["rms.${var.domain_name}"]
     }
   }
 }
@@ -183,7 +183,7 @@ resource "aws_lb_listener_rule" "rms_ola" {
 
   condition {
     host_header {
-      values = ["${var.environment}-rms.${var.domain_name}"]
+      values = ["rms.${var.domain_name}"]
     }
   }
 }
@@ -242,7 +242,7 @@ resource "aws_lb_listener_rule" "rms" {
 
   condition {
     host_header {
-      values = ["${var.environment}-rms.${var.domain_name}"]
+      values = ["rms.${var.domain_name}"]
     }
   }
 }
@@ -301,7 +301,7 @@ resource "aws_lb_listener_rule" "weaver" {
 
   condition {
     host_header {
-      values = ["${var.environment}-api.${var.domain_name}"]
+      values = ["api.${var.domain_name}"]
     }
   }
 }
@@ -360,7 +360,7 @@ resource "aws_lb_listener_rule" "weaver_bo" {
 
   condition {
     host_header {
-      values = ["${var.environment}-bo.${var.domain_name}"]
+      values = ["bo.${var.domain_name}"]
     }
   }
 }
@@ -419,7 +419,7 @@ resource "aws_lb_listener_rule" "pam" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["pam.${var.domain_name}"]
     }
   }
 }
@@ -478,7 +478,7 @@ resource "aws_lb_listener_rule" "pam_api" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["pam.${var.domain_name}"]
     }
   }
 }
@@ -537,7 +537,7 @@ resource "aws_lb_listener_rule" "pam_api_comm" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["pam.${var.domain_name}"]
     }
   }
 }
@@ -596,7 +596,7 @@ resource "aws_lb_listener_rule" "pam_api_report" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["pam.${var.domain_name}"]
     }
   }
 }
@@ -655,7 +655,7 @@ resource "aws_lb_listener_rule" "pam_api_ram" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["pam.${var.domain_name}"]
     }
   }
 }
@@ -714,7 +714,7 @@ resource "aws_lb_listener_rule" "pam_api_cashier" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["pam.${var.domain_name}"]
     }
   }
 }
@@ -773,7 +773,7 @@ resource "aws_lb_listener_rule" "comm" {
 
   condition {
     host_header {
-      values = ["${var.environment}-comm.${var.domain_name}"]
+      values = ["comm.${var.domain_name}"]
     }
   }
 }
@@ -833,7 +833,7 @@ resource "aws_lb_listener_rule" "reporting" {
 
   condition {
     host_header {
-      values = ["${var.environment}-reporting.${var.domain_name}"]
+      values = ["reporting.${var.domain_name}"]
     }
   }
 }
@@ -892,7 +892,7 @@ resource "aws_lb_listener_rule" "cashier" {
 
   condition {
     host_header {
-      values = ["${var.environment}-cashier.${var.domain_name}"]
+      values = ["cashier.${var.domain_name}"]
     }
   }
 }
@@ -951,7 +951,7 @@ resource "aws_lb_listener_rule" "ram" {
 
   condition {
     host_header {
-      values = ["${var.environment}-ram.${var.domain_name}"]
+      values = ["ram.${var.domain_name}"]
     }
   }
 }
@@ -1010,7 +1010,7 @@ resource "aws_lb_listener_rule" "pam_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam-backend.${var.domain_name}"]
+      values = ["pam-backend.${var.domain_name}"]
     }
   }
 }
@@ -1070,7 +1070,7 @@ resource "aws_lb_listener_rule" "comm_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-comm-backend.${var.domain_name}"]
+      values = ["comm-backend.${var.domain_name}"]
     }
   }
 }
@@ -1129,7 +1129,7 @@ resource "aws_lb_listener_rule" "reporting_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-reporting-backend.${var.domain_name}"]
+      values = ["reporting-backend.${var.domain_name}"]
     }
   }
 }
@@ -1189,7 +1189,7 @@ resource "aws_lb_listener_rule" "ram_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-ram-backend.${var.domain_name}"]
+      values = ["ram-backend.${var.domain_name}"]
     }
   }
 }
@@ -1248,7 +1248,7 @@ resource "aws_lb_listener_rule" "cashier_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-cashier-backend.${var.domain_name}"]
+      values = ["cashier-backend.${var.domain_name}"]
     }
   }
 }
