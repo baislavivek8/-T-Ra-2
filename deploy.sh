@@ -9,7 +9,7 @@ echo -e "${CYAN}${BOLD}Please select the environment you want to deploy !\n\n1. 
 read -p "Environment :" env
 echo -e "${CYAN}${BOLD}Please provide the absolute path of the Terraform Variables file\n"
 read -p "Terraform Variables File Path :" path
-echo -e "${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. RMS-OLA \n2. PAM \n3. WEAVER \n4. SPORTS-LOTTERY \n5. ALL\n"
+echo -e "${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. RMS-OLA \n2. PAM \n3. WEAVER \n4. SPORTS-LOTTERY \n5. IGE \n \n6. DMS \n7. WEB-GAME \n8. SBS-VS \n8. ALL \n"
 read -p "Module(s) Name :" module_name
 
 if [[ $action == "DEPLOY" ]] 
