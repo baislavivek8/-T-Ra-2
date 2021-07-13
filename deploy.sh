@@ -12,7 +12,8 @@ read -p "Terraform Variables File Path :" path
 echo -e "${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. RMS-OLA \n2. PAM \n3. WEAVER \n4. SPORTS-LOTTERY \n5. IGE \n \n6. DMS \n7. WEB-GAME \n8. SBS-VS \n8. ALL \n"
 read -p "Module(s) Name :" module_name
 
-if [[ $action == "DEPLOY" ]] 
+if [[ $action == "DEPLOY" ]]
+then
         if [[ $env == "UAT" ]]
         then
              cd /tmp ; git clone -b uat git@gitlab.com:harshit.wadhawan/terraform.git
@@ -22,35 +23,35 @@ if [[ $action == "DEPLOY" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.pam_backend \--target module.backend.ec2.aws_instance.pam_frontend \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
                 exit 0
-              elif [[ $env == "RMS-OLA" ]]
+              elif [[ $module_name == "RMS-OLA" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.rms_ola \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.rms_ola_api_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola_api \--target module.backend.aws_lb_listener_rule.rms_ola_api \--target module.backend.aws_lb_target_group.rms_root_tg \--target module.backend.aws_lb_target_group_attachment.rms_root \--target module.backend.aws_lb_listener_rule.rms_root \--target module.backend.aws_lb_target_group.rms_ola_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola \--target module.backend.aws_lb_listener_rule.rms_ola \--target module.backend.aws_lb_target_group.rms_tg \--target module.backend.aws_lb_target_group_attachment.rms \--target module.backend.aws_lb_listener_rule.rms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0
-              elif [[ $env == "WEAVER" ]]
+              elif [[ $module_name == "WEAVER" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.weaver_db \--target module.backend.ec2.aws_instance.weaver_api_doc \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
                 exit 0
-              elif [[ $env == "SPORTS-LOTTERY" ]]
+              elif [[ $module_name == "SPORTS-LOTTERY" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sle \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sle_tg \--target module.backend.aws_lb_target_group_attachment.sle \--target module.backend.aws_lb_listener_rule.sle \--target module.backend.aws_lb_target_group.sle2_tg \--target module.backend.aws_lb_target_group_attachment.sle2 \--target module.backend.aws_lb_listener_rule.sle2 \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0
-              elif [[ $env == "IGE" ]]
+              elif [[ $module_name == "IGE" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.ige \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.ige_tg \--target module.backend.aws_lb_target_group_attachment.ige \--target module.backend.aws_lb_listener_rule.ige \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0      
-              elif [[ $env == "DMS" ]]
+              elif [[ $module_name == "DMS" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.dms_dge \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.dms_tg \--target module.backend.aws_lb_target_group_attachment.dms \--target module.backend.aws_lb_listener_rule.dms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0  
-              elif [[ $env == "WEB-GAME" ]]
+              elif [[ $module_name == "WEB-GAME" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.web_game \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.web_game_tg \--target module.backend.aws_lb_target_group_attachment.web_game \--target module.backend.aws_lb_listener_rule.web_game \--target module.backend.aws_lb_target_group.web_game_api_tg \--target module.backend.aws_lb_target_group_attachment.web_game_api \--target module.backend.aws_lb_listener_rule.web_game_api \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0
-              elif [[ $env == "SBS-VS" ]]
+              elif [[ $module_name == "SBS-VS" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sbs_vs_trx \--target module.backend.aws_instance.sbs_front \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sbs_vs_bo_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs_bo \--target module.backend.aws_lb_listener_rule.sbs_vs_bo \--target module.backend.aws_lb_target_group.sbs_vs_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs \--target module.backend.aws_lb_listener_rule.sbs_vs \--target module.backend.aws_lb_target_group.sbs_front_tg \--target module.backend.aws_lb_target_group_attachment.sbs_front \--target module.backend.aws_lb_listener_rule.sbs_front \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0                                                        
-              elif [[ $env == "ALL" ]]
+              elif [[ $module_name == "ALL" ]]
               then
                 terraform apply \--var-file=$path
                 exit 0
@@ -79,19 +80,19 @@ if [[ $action == "DEPLOY" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sle \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sle_tg \--target module.backend.aws_lb_target_group_attachment.sle \--target module.backend.aws_lb_listener_rule.sle \--target module.backend.aws_lb_target_group.sle2_tg \--target module.backend.aws_lb_target_group_attachment.sle2 \--target module.backend.aws_lb_listener_rule.sle2 \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0  
-              elif [[ $env == "IGE" ]]
+              elif [[ $module_name == "IGE" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.ige \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.ige_tg \--target module.backend.aws_lb_target_group_attachment.ige \--target module.backend.aws_lb_listener_rule.ige \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0   
-              elif [[ $env == "DMS" ]]
+              elif [[ $module_name == "DMS" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.dms \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.dms_tg \--target module.backend.aws_lb_target_group_attachment.dms \--target module.backend.aws_lb_listener_rule.dms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0
-              elif [[ $env == "WEB-GAME" ]]
+              elif [[ $module_name == "WEB-GAME" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.web_game \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.web_game_tg \--target module.backend.aws_lb_target_group_attachment.web_game \--target module.backend.aws_lb_listener_rule.web_game \--target module.backend.aws_lb_target_group.web_game_api_tg \--target module.backend.aws_lb_target_group_attachment.web_game_api \--target module.backend.aws_lb_listener_rule.web_game_api \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0
-              elif [[ $env == "SBS-VS" ]]
+              elif [[ $module_name == "SBS-VS" ]]
               then
                 terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sbs_vs_trx \--target module.backend.aws_instance.sbs_front \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sbs_vs_bo_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs_bo \--target module.backend.aws_lb_listener_rule.sbs_vs_bo \--target module.backend.aws_lb_target_group.sbs_vs_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs \--target module.backend.aws_lb_listener_rule.sbs_vs \--target module.backend.aws_lb_target_group.sbs_front_tg \--target module.backend.aws_lb_target_group_attachment.sbs_front \--target module.backend.aws_lb_listener_rule.sbs_front \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0                                                                        
@@ -100,7 +101,9 @@ if [[ $action == "DEPLOY" ]]
                 terraform apply \--var-file=$path
                 exit 0
               else
+                echo "Executed the else condition"
                 exit 1
+
               fi
                 
         else
@@ -109,7 +112,8 @@ if [[ $action == "DEPLOY" ]]
 
 ############################################## DESTRUCTION ############################################################
 
-elif [[ $action == "DESTROY" ]] 
+elif [[ $action == "DESTROY" ]]
+then 
         if [[ $env == "UAT" ]]
         then
              cd /tmp ; git clone -b uat git@gitlab.com:harshit.wadhawan/terraform.git
@@ -119,11 +123,11 @@ elif [[ $action == "DESTROY" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.pam_backend \--target module.backend.ec2.aws_instance.pam_frontend \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
                 exit 0
-              elif [[ $env == "RMS-OLA" ]]
+              elif [[ $module_name == "RMS-OLA" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.rms_ola \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.rms_ola_api_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola_api \--target module.backend.aws_lb_listener_rule.rms_ola_api \--target module.backend.aws_lb_target_group.rms_root_tg \--target module.backend.aws_lb_target_group_attachment.rms_root \--target module.backend.aws_lb_listener_rule.rms_root \--target module.backend.aws_lb_target_group.rms_ola_tg \--target module.backend.aws_lb_target_group_attachment.rms_ola \--target module.backend.aws_lb_listener_rule.rms_ola \--target module.backend.aws_lb_target_group.rms_tg \--target module.backend.aws_lb_target_group_attachment.rms \--target module.backend.aws_lb_listener_rule.rms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0
-              elif [[ $env == "WEAVER" ]]
+              elif [[ $module_name == "WEAVER" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.alb \--target module.backend.db \--target module.backend.security \--target module.backend.acm \--target module.backend.ec2.aws_instance.weaver_db \--target module.backend.ec2.aws_instance.weaver_api_doc \--target module.backend.ec2.aws_instance.redis_mongo \--target module.backend.ec2.aws_instance.monitoring
                 exit 0
@@ -131,23 +135,23 @@ elif [[ $action == "DESTROY" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sle \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sle_tg \--target module.backend.aws_lb_target_group_attachment.sle \--target module.backend.aws_lb_listener_rule.sle \--target module.backend.aws_lb_target_group.sle2_tg \--target module.backend.aws_lb_target_group_attachment.sle2 \--target module.backend.aws_lb_listener_rule.sle2 \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0   
-              elif [[ $env == "IGE" ]]
+              elif [[ $module_name == "IGE" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.ige \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.ige_tg \--target module.backend.aws_lb_target_group_attachment.ige \--target module.backend.aws_lb_listener_rule.ige \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0   
-              elif [[ $env == "DMS" ]]
+              elif [[ $module_name == "DMS" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.dms_dge \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.dms_tg \--target module.backend.aws_lb_target_group_attachment.dms \--target module.backend.aws_lb_listener_rule.dms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0
-              elif [[ $env == "WEB-GAME" ]]
+              elif [[ $module_name == "WEB-GAME" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.web_game \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.web_game_tg \--target module.backend.aws_lb_target_group_attachment.web_game \--target module.backend.aws_lb_listener_rule.web_game \--target module.backend.aws_lb_target_group.web_game_api_tg \--target module.backend.aws_lb_target_group_attachment.web_game_api \--target module.backend.aws_lb_listener_rule.web_game_api \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0
-              elif [[ $env == "SBS-VS" ]]
+              elif [[ $module_name == "SBS-VS" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sbs_vs_trx \--target module.backend.aws_instance.sbs_front \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sbs_vs_bo_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs_bo \--target module.backend.aws_lb_listener_rule.sbs_vs_bo \--target module.backend.aws_lb_target_group.sbs_vs_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs \--target module.backend.aws_lb_listener_rule.sbs_vs \--target module.backend.aws_lb_target_group.sbs_front_tg \--target module.backend.aws_lb_target_group_attachment.sbs_front \--target module.backend.aws_lb_listener_rule.sbs_front \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert
                 exit 0                                                                          
-              elif [[ $env == "ALL" ]]
+              elif [[ $module_name == "ALL" ]]
               then
                 terraform destroy \--var-file=$path
                 exit 0
@@ -176,19 +180,19 @@ elif [[ $action == "DESTROY" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sle \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sle_tg \--target module.backend.aws_lb_target_group_attachment.sle \--target module.backend.aws_lb_listener_rule.sle \--target module.backend.aws_lb_target_group.sle2_tg \--target module.backend.aws_lb_target_group_attachment.sle2 \--target module.backend.aws_lb_listener_rule.sle2 \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0
-              elif [[ $env == "IGE" ]]
+              elif [[ $module_name == "IGE" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.ige \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.ige_tg \--target module.backend.aws_lb_target_group_attachment.ige \--target module.backend.aws_lb_listener_rule.ige \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0 
-              elif [[ $env == "DMS" ]]
+              elif [[ $module_name == "DMS" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.dms \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.dms_tg \--target module.backend.aws_lb_target_group_attachment.dms \--target module.backend.aws_lb_listener_rule.dms \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0
-              elif [[ $env == "WEB-GAME" ]]
+              elif [[ $module_name == "WEB-GAME" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.web_game \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.web_game_tg \--target module.backend.aws_lb_target_group_attachment.web_game \--target module.backend.aws_lb_listener_rule.web_game \--target module.backend.aws_lb_target_group.web_game_api_tg \--target module.backend.aws_lb_target_group_attachment.web_game_api \--target module.backend.aws_lb_listener_rule.web_game_api \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0 
-              elif [[ $env == "SBS-VS" ]]
+              elif [[ $module_name == "SBS-VS" ]]
               then
                 terraform destroy \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.sbs_vs_trx \--target module.backend.aws_instance.sbs_front \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.sbs_vs_bo_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs_bo \--target module.backend.aws_lb_listener_rule.sbs_vs_bo \--target module.backend.aws_lb_target_group.sbs_vs_tg \--target module.backend.aws_lb_target_group_attachment.sbs_vs \--target module.backend.aws_lb_listener_rule.sbs_vs \--target module.backend.aws_lb_target_group.sbs_front_tg \--target module.backend.aws_lb_target_group_attachment.sbs_front \--target module.backend.aws_lb_listener_rule.sbs_front \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert \--target module.backend.aws_db_parameter_group.rds-mysql \--target module.backend.aws_db_subnet_group.db-subnet-group \--target module.backend.aws_db_instance.mysql-instance
                 exit 0                                                    

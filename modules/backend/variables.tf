@@ -39,9 +39,9 @@ variable "account_id" {
   description = "AWS Account ID"
 }
 
-variable "alb_account_id" {
-  description = "Alb account ID wrt. aws regions"
-}
+# variable "alb_account_id" {
+#   description = "Alb account ID wrt. aws regions"
+# }
 
 variable "vpc_cidr" {
   description = "VPC CIDR"
