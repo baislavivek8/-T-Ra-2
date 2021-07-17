@@ -50,7 +50,7 @@ resource "aws_lb_target_group_attachment" "rms_ola_api" {
 # Route RMS OLA API
 resource "aws_lb_listener_rule" "rms_ola_api" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -108,7 +108,7 @@ resource "aws_lb_target_group_attachment" "rms_root" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "rms_root" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -168,7 +168,7 @@ resource "aws_lb_target_group_attachment" "rms_ola" {
 # ALB Route RMS OLA
 resource "aws_lb_listener_rule" "rms_ola" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -227,7 +227,7 @@ resource "aws_lb_target_group_attachment" "rms" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "rms" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -286,7 +286,7 @@ resource "aws_lb_target_group_attachment" "weaver" {
 # Route RMS WEAVER
 resource "aws_lb_listener_rule" "weaver" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -345,7 +345,7 @@ resource "aws_lb_target_group_attachment" "weaver_bo" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "weaver_bo" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -404,7 +404,7 @@ resource "aws_lb_target_group_attachment" "pam" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -463,7 +463,7 @@ resource "aws_lb_target_group_attachment" "pam_api" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -522,7 +522,7 @@ resource "aws_lb_target_group_attachment" "pam_api_comm" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_comm" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -581,7 +581,7 @@ resource "aws_lb_target_group_attachment" "pam_api_report" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_report" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -640,7 +640,7 @@ resource "aws_lb_target_group_attachment" "pam_api_ram" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_ram" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -699,7 +699,7 @@ resource "aws_lb_target_group_attachment" "pam_api_cashier" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_cashier" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -758,7 +758,7 @@ resource "aws_lb_target_group_attachment" "comm" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "comm" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -818,7 +818,7 @@ resource "aws_lb_target_group_attachment" "reporting" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "reporting" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -877,7 +877,7 @@ resource "aws_lb_target_group_attachment" "cashier" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "cashier" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -936,7 +936,7 @@ resource "aws_lb_target_group_attachment" "ram" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "ram" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -995,7 +995,7 @@ resource "aws_lb_target_group_attachment" "pam_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1055,7 +1055,7 @@ resource "aws_lb_target_group_attachment" "comm_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "comm_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1114,7 +1114,7 @@ resource "aws_lb_target_group_attachment" "reporting_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "reporting_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1174,7 +1174,7 @@ resource "aws_lb_target_group_attachment" "ram_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "ram_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1233,7 +1233,7 @@ resource "aws_lb_target_group_attachment" "cashier_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "cashier_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1291,7 +1291,7 @@ resource "aws_lb_target_group_attachment" "sle" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "sle" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1349,7 +1349,7 @@ resource "aws_lb_target_group_attachment" "sle2" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "sle2" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1407,7 +1407,7 @@ resource "aws_lb_target_group_attachment" "ige" {
 # Route IGE
 resource "aws_lb_listener_rule" "ige" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1465,7 +1465,7 @@ resource "aws_lb_target_group_attachment" "dms" {
 # Route IGE
 resource "aws_lb_listener_rule" "dms" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1523,7 +1523,7 @@ resource "aws_lb_target_group_attachment" "web_game" {
 # Route IGE
 resource "aws_lb_listener_rule" "web_game" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1581,7 +1581,7 @@ resource "aws_lb_target_group_attachment" "web_game_api" {
 # Route IGE
 resource "aws_lb_listener_rule" "web_game_api" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1639,7 +1639,7 @@ resource "aws_lb_target_group_attachment" "sbs_vs" {
 # Route SBS
 resource "aws_lb_listener_rule" "sbs_vs" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1697,7 +1697,7 @@ resource "aws_lb_target_group_attachment" "sbs_vs_bo" {
 # Route SBS
 resource "aws_lb_listener_rule" "sbs_vs_bo" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1755,7 +1755,7 @@ resource "aws_lb_target_group_attachment" "sbs_front" {
 # Route SBS
 resource "aws_lb_listener_rule" "sbs_front" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
