@@ -10,6 +10,7 @@ resource "aws_instance" "monitoring" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-monitoring"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -27,6 +28,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-rms-ola"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -44,6 +46,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-pam-backend"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -61,6 +64,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-pam-frontend"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -78,6 +82,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-redis-mongo"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -95,6 +100,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-weaver-db"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -112,6 +118,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-weaver-api-doc"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -129,6 +136,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-sle"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -146,6 +154,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-ige"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -163,6 +172,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-DMS/DGE"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -180,6 +190,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-web-game"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -197,6 +208,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-sbs-vs-trx"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
@@ -214,6 +226,7 @@ resource "aws_instance" "rms_ola" {
   tags = {
     "Name" = "${var.client_name}-${var.environment}-sbs-front"
     "Environment" = var.environment
+    "Backup"  = "yes"
   }
 
 }
