@@ -109,7 +109,7 @@ then
                 echo -e "\n${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. rms_ola \n2. pam \n3. weaver \n4. sle \n5. ige \n6. dms \n7. web_game \n8. sbs_vs \n8. ALL \n"
                 read -r -p "Module names separated by space: " -a arr
                 default
-                #db
+                db
                 for module in "${arr[@]}"; do
                 $module
                 done
