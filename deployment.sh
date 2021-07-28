@@ -94,7 +94,7 @@ then
         then
              cd /tmp ; git clone -b uat git@gitlab.com:harshit.wadhawan/terraform.git
              cd terraform ; terraform init
-                echo -e "\n${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. rms_ola \n2. pam \n3. weaver \n4. sle \n5. ige \n6. dms \n7. web_game \n8. sbs_vs \n8. ALL \n"
+                echo -e "\n${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. rms_ola \n2. pam \n3. weaver \n4. sle \n5. ige \n6. dms \n7. web_game \n8. sbs_vs \n8. all \n"
                 read -r -p "Module names separated by space: " -a arr
                 default
                 for module in "${arr[@]}"; do
