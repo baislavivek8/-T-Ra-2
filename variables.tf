@@ -50,9 +50,9 @@ variable "master_password" {
   description = "RDS Master Password "
 }
 
-variable "alb_account_id" {
-  description = "Alb account ID wrt. aws regions"
-}
+# variable "alb_account_id" {
+#   description = "Alb account ID wrt. aws regions"
+# }
 
 
 variable "max_prepared_transactions" {

@@ -50,7 +50,7 @@ resource "aws_lb_target_group_attachment" "rms_ola_api" {
 # Route RMS OLA API
 resource "aws_lb_listener_rule" "rms_ola_api" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -65,7 +65,7 @@ resource "aws_lb_listener_rule" "rms_ola_api" {
 
   condition {
     host_header {
-      values = ["${var.environment}-backoffice-${var.domain_name}"]
+      values = ["uat-backoffice.${var.domain_name}"]
     }
   }
 }
@@ -108,7 +108,7 @@ resource "aws_lb_target_group_attachment" "rms_root" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "rms_root" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -123,7 +123,7 @@ resource "aws_lb_listener_rule" "rms_root" {
 
   condition {
     host_header {
-      values = ["${var.environment}-rms.${var.domain_name}"]
+      values = ["uat-rms.${var.domain_name}"]
     }
   }
 }
@@ -168,7 +168,7 @@ resource "aws_lb_target_group_attachment" "rms_ola" {
 # ALB Route RMS OLA
 resource "aws_lb_listener_rule" "rms_ola" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -183,7 +183,7 @@ resource "aws_lb_listener_rule" "rms_ola" {
 
   condition {
     host_header {
-      values = ["${var.environment}-rms.${var.domain_name}"]
+      values = ["uat-rms.${var.domain_name}"]
     }
   }
 }
@@ -227,7 +227,7 @@ resource "aws_lb_target_group_attachment" "rms" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "rms" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -242,14 +242,14 @@ resource "aws_lb_listener_rule" "rms" {
 
   condition {
     host_header {
-      values = ["${var.environment}-rms.${var.domain_name}"]
+      values = ["uat-rms.${var.domain_name}"]
     }
   }
 }
 
 
 ############################################### ROUTE 5 ###########################################################################
-# Target Group Creation RMS OLA
+# Target Group Creation WEAVER
 resource "aws_lb_target_group" "weaver_tg" {
   name = "${var.client_name}-${var.environment}-weaver-TG"
   port = 8080
@@ -276,17 +276,17 @@ resource "aws_lb_target_group" "weaver_tg" {
   }
 }
 
-#TG Attachment RMS OLA
+#TG Attachment WEAVER
 resource "aws_lb_target_group_attachment" "weaver" {
   target_group_arn = aws_lb_target_group.weaver_tg.arn
   target_id        = aws_instance.weaver_api_doc.id
   port             = 8080
 }
 
-# Route RMS OLA
+# Route RMS WEAVER
 resource "aws_lb_listener_rule" "weaver" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -301,7 +301,7 @@ resource "aws_lb_listener_rule" "weaver" {
 
   condition {
     host_header {
-      values = ["${var.environment}-api.${var.domain_name}"]
+      values = ["uat-api.${var.domain_name}"]
     }
   }
 }
@@ -345,7 +345,7 @@ resource "aws_lb_target_group_attachment" "weaver_bo" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "weaver_bo" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -354,13 +354,13 @@ resource "aws_lb_listener_rule" "weaver_bo" {
 
   condition {
     path_pattern {
-      values = ["/WeaverBo"]
+      values = ["/WeaverBo","/IGEBackOffice"]
     }
   }
 
   condition {
     host_header {
-      values = ["${var.environment}-bo.${var.domain_name}"]
+      values = ["uat-bo.${var.domain_name}"]
     }
   }
 }
@@ -404,7 +404,7 @@ resource "aws_lb_target_group_attachment" "pam" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -419,7 +419,7 @@ resource "aws_lb_listener_rule" "pam" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["uat-pam.${var.domain_name}"]
     }
   }
 }
@@ -463,7 +463,7 @@ resource "aws_lb_target_group_attachment" "pam_api" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -478,7 +478,7 @@ resource "aws_lb_listener_rule" "pam_api" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["uat-pam.${var.domain_name}"]
     }
   }
 }
@@ -522,7 +522,7 @@ resource "aws_lb_target_group_attachment" "pam_api_comm" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_comm" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -537,7 +537,7 @@ resource "aws_lb_listener_rule" "pam_api_comm" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["uat-pam.${var.domain_name}"]
     }
   }
 }
@@ -581,7 +581,7 @@ resource "aws_lb_target_group_attachment" "pam_api_report" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_report" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -596,7 +596,7 @@ resource "aws_lb_listener_rule" "pam_api_report" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["uat-pam.${var.domain_name}"]
     }
   }
 }
@@ -640,7 +640,7 @@ resource "aws_lb_target_group_attachment" "pam_api_ram" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_ram" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -655,7 +655,7 @@ resource "aws_lb_listener_rule" "pam_api_ram" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["uat-pam.${var.domain_name}"]
     }
   }
 }
@@ -699,7 +699,7 @@ resource "aws_lb_target_group_attachment" "pam_api_cashier" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_api_cashier" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -714,7 +714,7 @@ resource "aws_lb_listener_rule" "pam_api_cashier" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam.${var.domain_name}"]
+      values = ["uat-pam.${var.domain_name}"]
     }
   }
 }
@@ -758,7 +758,7 @@ resource "aws_lb_target_group_attachment" "comm" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "comm" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -773,7 +773,7 @@ resource "aws_lb_listener_rule" "comm" {
 
   condition {
     host_header {
-      values = ["${var.environment}-comm.${var.domain_name}"]
+      values = ["uat-comm.${var.domain_name}"]
     }
   }
 }
@@ -818,7 +818,7 @@ resource "aws_lb_target_group_attachment" "reporting" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "reporting" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -833,7 +833,7 @@ resource "aws_lb_listener_rule" "reporting" {
 
   condition {
     host_header {
-      values = ["${var.environment}-reporting.${var.domain_name}"]
+      values = ["uat-reporting.${var.domain_name}"]
     }
   }
 }
@@ -877,7 +877,7 @@ resource "aws_lb_target_group_attachment" "cashier" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "cashier" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -892,7 +892,7 @@ resource "aws_lb_listener_rule" "cashier" {
 
   condition {
     host_header {
-      values = ["${var.environment}-cashier.${var.domain_name}"]
+      values = ["uat-cashier.${var.domain_name}"]
     }
   }
 }
@@ -936,7 +936,7 @@ resource "aws_lb_target_group_attachment" "ram" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "ram" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -951,7 +951,7 @@ resource "aws_lb_listener_rule" "ram" {
 
   condition {
     host_header {
-      values = ["${var.environment}-ram.${var.domain_name}"]
+      values = ["uat-ram.${var.domain_name}"]
     }
   }
 }
@@ -995,7 +995,7 @@ resource "aws_lb_target_group_attachment" "pam_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "pam_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1010,7 +1010,7 @@ resource "aws_lb_listener_rule" "pam_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-pam-backend.${var.domain_name}"]
+      values = ["uat-pam-backend.${var.domain_name}"]
     }
   }
 }
@@ -1055,7 +1055,7 @@ resource "aws_lb_target_group_attachment" "comm_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "comm_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1070,7 +1070,7 @@ resource "aws_lb_listener_rule" "comm_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-comm-backend.${var.domain_name}"]
+      values = ["uat-comm-backend.${var.domain_name}"]
     }
   }
 }
@@ -1114,7 +1114,7 @@ resource "aws_lb_target_group_attachment" "reporting_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "reporting_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1129,7 +1129,7 @@ resource "aws_lb_listener_rule" "reporting_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-reporting-backend.${var.domain_name}"]
+      values = ["uat-reporting-backend.${var.domain_name}"]
     }
   }
 }
@@ -1174,7 +1174,7 @@ resource "aws_lb_target_group_attachment" "ram_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "ram_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1189,7 +1189,7 @@ resource "aws_lb_listener_rule" "ram_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-ram-backend.${var.domain_name}"]
+      values = ["uat-ram-backend.${var.domain_name}"]
     }
   }
 }
@@ -1233,7 +1233,7 @@ resource "aws_lb_target_group_attachment" "cashier_backend" {
 # Route RMS OLA
 resource "aws_lb_listener_rule" "cashier_backend" {
   listener_arn = aws_lb_listener.alb-listener-https.arn
-  priority     = 100
+  
 
   action {
     type             = "forward"
@@ -1248,11 +1248,535 @@ resource "aws_lb_listener_rule" "cashier_backend" {
 
   condition {
     host_header {
-      values = ["${var.environment}-cashier-backend.${var.domain_name}"]
+      values = ["uat-cashier-backend.${var.domain_name}"]
     }
   }
 }
 
+############################################### ROUTE 22 ###########################################################################
+# Target Group Creation SLE
+resource "aws_lb_target_group" "sle_tg" {
+  name = "${var.client_name}-${var.environment}-sle-TG"
+  port = 8082
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-sle-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment RMS OLA
+resource "aws_lb_target_group_attachment" "sle" {
+  target_group_arn = aws_lb_target_group.sle_tg.arn
+  target_id        = aws_instance.sle.id
+  port             = 8082
+}
+
+# Route RMS OLA
+resource "aws_lb_listener_rule" "sle" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.sle_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/SportsLottery","/DrawMachine"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-sle.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 23 ###########################################################################
+# Target Group Creation SLE
+resource "aws_lb_target_group" "sle2_tg" {
+  name = "${var.client_name}-${var.environment}-sle2-TG"
+  port = 8001
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-sle2-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment RMS OLA
+resource "aws_lb_target_group_attachment" "sle2" {
+  target_group_arn = aws_lb_target_group.sle2_tg.arn
+  target_id        = aws_instance.sle.id
+  port             = 8001
+}
+
+# Route RMS OLA
+resource "aws_lb_listener_rule" "sle2" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.sle2_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-sle.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 24 ###########################################################################
+# Target Group Creation IGE
+resource "aws_lb_target_group" "ige_tg" {
+  name = "${var.client_name}-${var.environment}-ige-TG"
+  port = 8080
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-ige-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment IGE
+resource "aws_lb_target_group_attachment" "ige" {
+  target_group_arn = aws_lb_target_group.ige_tg.arn
+  target_id        = aws_instance.ige.id
+  port             = 8080
+}
+
+# Route IGE
+resource "aws_lb_listener_rule" "ige" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.ige_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/InstantGameEngine","/IGEContent","/InstantGameEngineMS"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-ige.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 25 ###########################################################################
+# Target Group Creation DMS
+resource "aws_lb_target_group" "dms_tg" {
+  name = "${var.client_name}-${var.environment}-dms-TG"
+  port = 8081
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-dms-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment DMS
+resource "aws_lb_target_group_attachment" "dms" {
+  target_group_arn = aws_lb_target_group.dms_tg.arn
+  target_id        = aws_instance.dms_dge.id
+  port             = 8081
+}
+
+# Route IGE
+resource "aws_lb_listener_rule" "dms" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.dms_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/DMS","/SuperKeno","/LuckySix","/LottoDiamond"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-dms.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 26 ###########################################################################
+# Target Group Creation DMS
+resource "aws_lb_target_group" "web_game_tg" {
+  name = "${var.client_name}-${var.environment}-web-game-TG"
+  port = 4200
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-web-game-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment DMS
+resource "aws_lb_target_group_attachment" "web_game" {
+  target_group_arn = aws_lb_target_group.web_game_tg.arn
+  target_id        = aws_instance.web_game.id
+  port             = 4200
+}
+
+# Route IGE
+resource "aws_lb_listener_rule" "web_game" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.web_game_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-games.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 27 ###########################################################################
+# Target Group Creation GAMES
+resource "aws_lb_target_group" "web_game_api_tg" {
+  name = "${var.client_name}-${var.environment}-web-gm-api-TG"
+  port = 3001
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-web-gm-api-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment DMS
+resource "aws_lb_target_group_attachment" "web_game_api" {
+  target_group_arn = aws_lb_target_group.web_game_api_tg.arn
+  target_id        = aws_instance.web_game.id
+  port             = 3001
+}
+
+# Route IGE
+resource "aws_lb_listener_rule" "web_game_api" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.web_game_api_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/api","/websocket"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-games.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 28 ###########################################################################
+# Target Group Creation SBS
+resource "aws_lb_target_group" "sbs_vs_tg" {
+  name = "${var.client_name}-${var.environment}-sbs-vs-TG"
+  port = 8080
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-sbs-vs-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment SBS
+resource "aws_lb_target_group_attachment" "sbs_vs" {
+  target_group_arn = aws_lb_target_group.sbs_vs_tg.arn
+  target_id        = aws_instance.sbs_vs_trx.id
+  port             = 8080
+}
+
+# Route SBS
+resource "aws_lb_listener_rule" "sbs_vs" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.sbs_vs_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-vs-front.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 29 ###########################################################################
+# Target Group Creation SBS
+resource "aws_lb_target_group" "sbs_vs_bo_tg" {
+  name = "${var.client_name}-${var.environment}-sbs-vs-bo-TG"
+  port = 80
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-sbs-vs-bo-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment SBS
+resource "aws_lb_target_group_attachment" "sbs_vs_bo" {
+  target_group_arn = aws_lb_target_group.sbs_vs_bo_tg.arn
+  target_id        = aws_instance.sbs_vs_trx.id
+  port             = 80
+}
+
+# Route SBS
+resource "aws_lb_listener_rule" "sbs_vs_bo" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.sbs_vs_bo_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-vs-bo.${var.domain_name}","vs.${var.domain_name}"]
+    }
+  }
+}
+
+############################################### ROUTE 30 ###########################################################################
+# Target Group Creation SBS FRONT
+resource "aws_lb_target_group" "sbs_front_tg" {
+  name = "${var.client_name}-${var.environment}-sbs-front-TG"
+  port = 8080
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-sbs-front-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment SBS
+resource "aws_lb_target_group_attachment" "sbs_front" {
+  target_group_arn = aws_lb_target_group.sbs_front_tg.arn
+  target_id        = aws_instance.sbs_front.id
+  port             = 8080
+}
+
+# Route SBS
+resource "aws_lb_listener_rule" "sbs_front" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.sbs_front_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["uat-sbs-front.${var.domain_name}"]
+    }
+  }
+}
+
+
+########################################### ROUTING ENDS #######################################################
 # Redirect all traffic from Port 80 to 443
 resource "aws_lb_listener" "alb-listener-http" {
   load_balancer_arn = aws_alb.alb.arn

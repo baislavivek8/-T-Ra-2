@@ -36,7 +36,7 @@ module "backend" {
   master_password = var.master_password
   max_prepared_transactions = var.max_prepared_transactions
   vpn_port_22_security_group_id = var.vpn_port_22_security_group_id
-  alb_account_id = var.alb_account_id
+  #alb_account_id = var.alb_account_id
   max_connections = var.max_connections
   work_mem = var.work_mem
   audit_trail_enabled = var.audit_trail_enabled
