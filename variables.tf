@@ -91,3 +91,7 @@ variable "domain_name" {
 }
 
 variable "ami_id" {}
+
+variable "aws_profile" {
+  
+}
