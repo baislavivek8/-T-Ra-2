@@ -21,9 +21,10 @@ provider "aws" {
   //alias   = "current"
   region  = var.aws_region
   //shared_credentials_file = "C:/Users/Administrator/.aws/credentials"
-  profile = "demo"
+  profile = var.aws_profile
 
 }
+
 
 /*provider "aws" {
   alias                   = "peer"

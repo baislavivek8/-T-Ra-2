@@ -1,5 +1,6 @@
 aws_region = "us-west-2"
 aws_peer_region = "ap-south-1"
+aws_profile = "demo"
 client_name = "snduk"
 domain_name = "snduk.com"
 az_count = "2"
