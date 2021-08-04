@@ -242,7 +242,7 @@ resource "aws_instance" "rms_ola" {
   subnet_id = var.aws_private_subnet[0]
   
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-sbs-front"
+    "Name" = "${var.client_name}-${var.environment}-portal-web"
     "Environment" = var.environment
     "Backup"  = "yes"
   }
