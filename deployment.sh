@@ -34,7 +34,7 @@ sle()
 #### Function Definition for DMS Module #####
 dms()
 {
-    terraform apply \--var-file=$path \--target module.backend.aws_instance.dms \--target module.backend.aws_lb_target_group.dms_tg \--target module.backend.aws_lb_target_group_attachment.dms \--target module.backend.aws_lb_listener_rule.dms --auto-approve
+    terraform apply \--var-file=$path \--target module.backend.aws_instance.dms \--target module.backend.aws_instance.dgw_db \--target module.backend.aws_lb_target_group.dms_tg \--target module.backend.aws_lb_target_group_attachment.dms \--target module.backend.aws_lb_listener_rule.dms --auto-approve
 
 }
 
@@ -68,7 +68,7 @@ sbs_vs()
 #### Function Definition for DEFAULT Module. Contains VPC, SG, ALB, Certs, Monitoring & Redis-Mongo instances. #####
 default()
 {
-    terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_iam_role.dlm_lifecycle_role \--target module.backend.aws_iam_role_policy.dlm_lifecycle \--target module.backend.aws_dlm_lifecycle_policy.backup \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert --auto-approve
+    terraform apply \--var-file=$path \--target module.vpc \--target module.backend.aws_security_group.private_vpn_sg \--target module.backend.aws_security_group.alb_sg \--target module.backend.aws_security_group.private_sg  \--target module.backend.aws_acm_certificate.cert \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.redis \--target module.backend.aws_instance.mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_iam_role.dlm_lifecycle_role \--target module.backend.aws_iam_role_policy.dlm_lifecycle \--target module.backend.aws_dlm_lifecycle_policy.backup \--target module.backend.aws_lb_listener.alb-listener-http \--target module.backend.aws_lb_listener.alb-listener-https \--target module.backend.aws_lb_listener_certificate.alb-cert --auto-approve
 
 }
 
