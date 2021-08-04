@@ -625,7 +625,7 @@ resource "aws_lb_target_group" "pam_api_ram_tg" {
   }
 
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-pam-api_ram-TG"
+    "Name" = "${var.client_name}-${var.environment}-pam-api-ram-TG"
     "Environment" = var.environment
   }
 }
@@ -664,7 +664,7 @@ resource "aws_lb_listener_rule" "pam_api_ram" {
 ############################################### ROUTE 12 ###########################################################################
 # Target Group Creation PAM API
 resource "aws_lb_target_group" "pam_api_cashier_tg" {
-  name = "${var.client_name}-${var.environment}-pam-api-cashier-TG"
+  name = "${var.client_name}-${var.environment}-pam-api-csher-TG"
   port = 3006
   protocol = "HTTP"
   vpc_id = var.vpc_id
@@ -684,7 +684,7 @@ resource "aws_lb_target_group" "pam_api_cashier_tg" {
   }
 
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-pam-api_cashier-TG"
+    "Name" = "${var.client_name}-${var.environment}-pam-api-csher-TG"
     "Environment" = var.environment
   }
 }
@@ -742,7 +742,7 @@ resource "aws_lb_target_group" "pam_api_rg_tg" {
   }
 
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-pam-api_rg-TG"
+    "Name" = "${var.client_name}-${var.environment}-pam-api-rg-TG"
     "Environment" = var.environment
   }
 }
