@@ -108,7 +108,7 @@ then
                 $module
                 done
 
-        elif [[ $env == "ULTRA" ]]
+        elif [[ $env == "PROD" ]]
         then
                 cd /tmp ; git clone -b ultra git@gitlab.com:harshit.wadhawan/terraform.git
                 cd terraform ; terraform init
@@ -119,7 +119,7 @@ then
                 $module
                 done
 
-        elif [[ $env == "PROD" ]]
+        elif [[ $env == "none" ]]
         then
                 cd /tmp ; git clone -b prod git@gitlab.com:harshit.wadhawan/terraform.git
                 cd terraform ; terraform init
