@@ -6,7 +6,7 @@ CYAN='\033[1;36m'
 #### Function Definition for PAM Module #####
 pam()
 {
-    terraform apply \--var-file=$path \--target module.backend.aws_instance.pam_backend \--target module.backend.aws_instance.pam_frontend \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.pam_tg \--target module.backend.aws_lb_target_group_attachment.pam \--target module.backend.aws_lb_listener_rule.pam \--target module.backend.aws_lb_target_group.pam_api_tg \--target module.backend.aws_lb_target_group_attachment.pam_api \--target module.backend.aws_lb_listener_rule.pam_api \--target module.backend.aws_lb_target_group.pam_api_comm_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_comm \--target module.backend.aws_lb_listener_rule.pam_api_comm \--target module.backend.aws_lb_target_group.pam_api_report_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_report \--target module.backend.aws_lb_listener_rule.pam_api_report \--target module.backend.aws_lb_target_group.pam_api_ram_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_ram \--target module.backend.aws_lb_listener_rule.pam_api_ram \--target module.backend.aws_lb_target_group.pam_api_cashier_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_cashier \--target module.backend.aws_lb_listener_rule.pam_api_cashier \--target module.backend.aws_lb_target_group.comm_tg \--target module.backend.aws_lb_target_group_attachment.comm \--target module.backend.aws_lb_listener_rule.comm \--target module.backend.aws_lb_target_group.reporting_tg \--target module.backend.aws_lb_target_group_attachment.reporting \--target module.backend.aws_lb_listener_rule.reporting \--target module.backend.aws_lb_target_group.cashier_tg \--target module.backend.aws_lb_target_group_attachment.cashier \--target module.backend.aws_lb_listener_rule.cashier \--target module.backend.aws_lb_target_group.ram_tg \--target module.backend.aws_lb_target_group_attachment.ram \--target module.backend.aws_lb_listener_rule.ram \--target module.backend.aws_lb_target_group.pam_backend_tg \--target module.backend.aws_lb_target_group_attachment.pam_backend \--target module.backend.aws_lb_listener_rule.pam_backend \--target module.backend.aws_lb_target_group.comm_backend_tg \--target module.backend.aws_lb_target_group_attachment.comm_backend \--target module.backend.aws_lb_listener_rule.comm_backend \--target module.backend.aws_lb_target_group.reporting_backend_tg \--target module.backend.aws_lb_target_group_attachment.reporting_backend \--target module.backend.aws_lb_listener_rule.reporting_backend \--target module.backend.aws_lb_target_group.ram_backend_tg \--target module.backend.aws_lb_target_group_attachment.ram_backend \--target module.backend.aws_lb_listener_rule.ram_backend \--target module.backend.aws_lb_target_group.cashier_backend_tg \--target module.backend.aws_lb_target_group_attachment.cashier_backend \--target module.backend.aws_lb_listener_rule.cashier_backend --auto-approve
+    terraform apply \--var-file=$path \--target module.backend.aws_instance.pam_backend \--target module.backend.aws_instance.pam_frontend \--target module.backend.aws_instance.redis_mongo \--target module.backend.aws_instance.monitoring \--target module.backend.aws_alb.alb \--target module.backend.aws_lb_target_group.pam_tg \--target module.backend.aws_lb_target_group_attachment.pam \--target module.backend.aws_lb_listener_rule.pam \--target module.backend.aws_lb_target_group.rg_tg \--target module.backend.aws_lb_target_group_attachment.rg \--target module.backend.aws_lb_listener_rule.rg \--target module.backend.aws_lb_target_group.pam_api_tg \--target module.backend.aws_lb_target_group_attachment.pam_api \--target module.backend.aws_lb_listener_rule.pam_api \--target module.backend.aws_lb_target_group.pam_api_comm_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_comm \--target module.backend.aws_lb_listener_rule.pam_api_comm \--target module.backend.aws_lb_target_group.pam_api_report_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_report \--target module.backend.aws_lb_listener_rule.pam_api_report \--target module.backend.aws_lb_target_group.pam_api_ram_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_ram \--target module.backend.aws_lb_listener_rule.pam_api_ram \--target module.backend.aws_lb_target_group.pam_api_cashier_tg \--target module.backend.aws_lb_target_group_attachment.pam_api_cashier \--target module.backend.aws_lb_listener_rule.pam_api_cashier \--target module.backend.aws_lb_target_group.comm_tg \--target module.backend.aws_lb_target_group_attachment.comm \--target module.backend.aws_lb_listener_rule.comm \--target module.backend.aws_lb_target_group.reporting_tg \--target module.backend.aws_lb_target_group_attachment.reporting \--target module.backend.aws_lb_listener_rule.reporting \--target module.backend.aws_lb_target_group.cashier_tg \--target module.backend.aws_lb_target_group_attachment.cashier \--target module.backend.aws_lb_listener_rule.cashier \--target module.backend.aws_lb_target_group.ram_tg \--target module.backend.aws_lb_target_group_attachment.ram \--target module.backend.aws_lb_listener_rule.ram \--target module.backend.aws_lb_target_group.pam_backend_tg \--target module.backend.aws_lb_target_group_attachment.pam_backend \--target module.backend.aws_lb_listener_rule.pam_backend \--target module.backend.aws_lb_target_group.comm_backend_tg \--target module.backend.aws_lb_target_group_attachment.comm_backend \--target module.backend.aws_lb_listener_rule.comm_backend \--target module.backend.aws_lb_target_group.reporting_backend_tg \--target module.backend.aws_lb_target_group_attachment.reporting_backend \--target module.backend.aws_lb_listener_rule.reporting_backend \--target module.backend.aws_lb_target_group.ram_backend_tg \--target module.backend.aws_lb_target_group_attachment.ram_backend \--target module.backend.aws_lb_listener_rule.ram_backend \--target module.backend.aws_lb_target_group.cashier_backend_tg \--target module.backend.aws_lb_target_group_attachment.cashier_backend \--target module.backend.aws_lb_listener_rule.cashier_backend --auto-approve
 
 }
 
@@ -42,6 +42,13 @@ dms()
 ige()
 {
     terraform apply \--var-file=$path \--target module.backend.aws_instance.ige \--target module.backend.aws_lb_target_group.ige_tg \--target module.backend.aws_lb_target_group_attachment.ige \--target module.backend.aws_lb_listener_rule.ige --auto-approve
+
+}
+
+portal_web()
+
+{
+    terraform apply \--var-file=$path \--target module.backend.aws_instance.portal_web \--target module.backend.aws_lb_target_group.portal_web_tg \--target module.backend.aws_lb_target_group_attachment.portal_web \--target module.backend.aws_lb_listener_rule.portal_web --auto-approve
 
 }
 
@@ -81,7 +88,7 @@ all()
 
 echo -e "${CYAN}${BOLD}Please select the action you want to take ! Choose from the options below: \n\n1. DEPLOY \n2. DESTROY \n"
 read -p "Environment :" action
-echo -e "${CYAN}${BOLD}Please select the environment you want to deploy !\n\n1. UAT \n2. PROD\n"
+echo -e "${CYAN}${BOLD}Please select the environment you want to deploy !\n\n1. UAT \n2. PROD\n \n3. ULTRA"
 read -p "Environment :" env
 echo -e "${CYAN}${BOLD}Please provide the absolute path of the Terraform Variables file\n"
 read -p "Terraform Variables File Path :" path
@@ -101,12 +108,22 @@ then
                 $module
                 done
 
+        elif [[ $env == "ULTRA" ]]
+        then
+                cd /tmp ; git clone -b ultra git@gitlab.com:harshit.wadhawan/terraform.git
+                cd terraform ; terraform init
+                echo -e "\n${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. rms_ola \n2. pam \n3. weaver \n4. sle \n5. ige \n6. dms \n7. web_game \n8. sbs_vs \n9. portal_web \n10. all \n"
+                read -r -p "Module names separated by space: " -a arr
+                default
+                for module in "${arr[@]}"; do
+                $module
+                done
 
         elif [[ $env == "PROD" ]]
         then
                 cd /tmp ; git clone -b prod git@gitlab.com:harshit.wadhawan/terraform.git
                 cd terraform ; terraform init
-                echo -e "\n${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. rms_ola \n2. pam \n3. weaver \n4. sle \n5. ige \n6. dms \n7. web_game \n8. sbs_vs \n8. ALL \n"
+                echo -e "\n${CYAN}${BOLD}Please choose the modules you want to deploy\n\n1. rms_ola \n2. pam \n3. weaver \n4. sle \n5. ige \n6. dms \n7. web_game \n8. sbs_vs \n9. all \n"
                 read -r -p "Module names separated by space: " -a arr
                 default
                 db
