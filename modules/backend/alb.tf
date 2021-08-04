@@ -1313,7 +1313,7 @@ resource "aws_lb_listener_rule" "ram_backend" {
 ############################################### ROUTE 21 ###########################################################################
 # Target Group Creation PAM
 resource "aws_lb_target_group" "cashier_backend_tg" {
-  name = "${var.client_name}-${var.environment}-cashier-backend-TG"
+  name = "${var.client_name}-${var.environment}-cashier-bcknd-TG"
   port = 8085
   protocol = "HTTP"
   vpc_id = var.vpc_id
@@ -1333,7 +1333,7 @@ resource "aws_lb_target_group" "cashier_backend_tg" {
   }
 
   tags = {
-    "Name" = "${var.client_name}-${var.environment}-cashier-backend-TG"
+    "Name" = "${var.client_name}-${var.environment}-cashier-bcknd-TG"
     "Environment" = var.environment
   }
 }
