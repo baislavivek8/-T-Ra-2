@@ -1368,6 +1368,65 @@ resource "aws_lb_listener_rule" "cashier_backend" {
   }
 }
 
+############################################### ROUTE 21 ###########################################################################
+# Target Group Creation PAM
+resource "aws_lb_target_group" "cashier_backend_tg" {
+  name = "${var.client_name}-${var.environment}-cashier-bcknd-TG"
+  port = 8082
+  protocol = "HTTP"
+  vpc_id = var.vpc_id
+
+  health_check {
+    healthy_threshold = "3"
+    interval = "30"
+    protocol = "HTTP"
+    matcher = "200"
+    timeout = "15"
+    path = "/"
+    unhealthy_threshold = "2"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    "Name" = "${var.client_name}-${var.environment}-cashier-bcknd-TG"
+    "Environment" = var.environment
+  }
+}
+
+#TG Attachment RMS OLA
+resource "aws_lb_target_group_attachment" "cashier_backend" {
+  target_group_arn = aws_lb_target_group.cashier_backend_tg.arn
+  target_id        = aws_instance.pam_backend.id
+  port             = 8082
+}
+
+# Route RMS OLA
+resource "aws_lb_listener_rule" "cashier_backend" {
+  listener_arn = aws_lb_listener.alb-listener-https.arn
+  
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.cashier_backend_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/"]
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["rg-backend.${var.domain_name}"]
+    }
+  }
+}
+
+
 ############################################### ROUTE 22 ###########################################################################
 # Target Group Creation SLE
 resource "aws_lb_target_group" "sle_tg" {
@@ -1589,7 +1648,7 @@ resource "aws_lb_listener_rule" "dms" {
 
   condition {
     path_pattern {
-      values = ["/DMS","/SuperKeno","/LuckySix","/LottoDiamond"]
+      values = ["/DMS","/SuperKeno","/LuckySix","/LottoDiamond","/LuckyNumber"]
     }
   }
 
