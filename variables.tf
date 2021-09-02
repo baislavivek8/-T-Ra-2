@@ -6,8 +6,8 @@ variable "aws_region" {
 }
 
 variable "aws_peer_region" {
-  description = "The AWS region things are created in"
-  default = "us-east-1"
+  description = "The AWS region for Peer"
+  default = "ap-south-1"
 }
 
 variable "az_count" {
@@ -92,6 +92,6 @@ variable "domain_name" {
 
 variable "ami_id" {}
 
-variable "aws_profile" {
-  
-}
+variable "aws_profile" {}
+
+variable "aws_peer_profile" {}
