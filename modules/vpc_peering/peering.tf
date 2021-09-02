@@ -6,16 +6,6 @@ provider "aws" {
   alias = "dst"
 }
 
-### Create Accepter route table
-# data "aws_route_table" "accepter_rtb" {
-#   provider = aws.dst
-#   vpc_id   = "vpc-0f2123bb78313ae45"
-#   filter {
-#     name   = "tag:Name"
-#     values = [var.accepter_intra_subnet_name]
-#   }
-# }
-
 ### Requester's side of the connection.
 resource "aws_vpc_peering_connection" "requester_connection" {
   vpc_id        = var.vpc_id

@@ -50,10 +50,6 @@ variable "master_password" {
   description = "RDS Master Password "
 }
 
-# variable "alb_account_id" {
-#   description = "Alb account ID wrt. aws regions"
-# }
-
 
 variable "max_prepared_transactions" {
   description = " Value for max_prepared_transactions postgresql parameter"
@@ -80,11 +76,6 @@ variable "peer_vpc_id" {
 variable "peer_cidr" {
   description = "VPC CIDR Block of Peer Account"
 }
-
-/*variable "accepter_intra_subnet_name" {
-  description = "Subnet name of Peer VPC"
-  
-}*/
 
 variable "domain_name" {
   description = "Domain Name to be mapped"
