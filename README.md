@@ -23,3 +23,4 @@ db_instance_class = "db.t2.micro"
 peer_vpc_id = "vpc-0f2123bb78313ae45"
 peer_cidr = "10.160.0.0/16"
 ami_id = "ami-00e87074e52e6c9f9"
+######
