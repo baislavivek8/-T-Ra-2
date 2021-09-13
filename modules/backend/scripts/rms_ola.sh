@@ -173,6 +173,27 @@ else
 fi
 
 ############################## SSH service allow pass auth #######################################################
+if [ $(id -u) -eq 0 ]; then
+        username=shubham_t
+        password=shubham_t
+        rpm -qa perl
+        if [ $? -eq 0 ]; then
+                echo "perl exists!"
+                pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+                useradd -m  -G wheel  -p "$pass" "$username"
+                [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+        fi
+else
+        echo "Only root may add a user to the system."
+        exit 2
+fi
+##############################################################################################################
+passwd --expire vivek
+passwd --expire harshit
+passwd --expire shubham
+passwd --expire shubham_t
+passwd --expire satya
+#############################################################################################################
 sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 
@@ -182,7 +203,7 @@ systemctl restart sshd
 
 
 ################## RMS OLA #########################
-
+yum install wget -y
 yum install java  -y
 echo "stopping if service exist"
 systemctl stop ola
@@ -191,60 +212,53 @@ systemctl stop rms
 useradd -s /sbin/nologin rmsuser
 useradd -s /sbin/nologin olauser
 cd /tmp/
-wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz 
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/apache-tomcat-9.0.1_0la.tar.gz
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/apache-tomcat-9.0.1_rms.tar.gz
 mkdir /data
-mkdir /data/OLA 
-mkdir /data/RMS 
-cp  /tmp/apache-tomcat-9.0.46.tar.gz /data/OLA/
-sleep 1 
-cp  /tmp/apache-tomcat-9.0.46.tar.gz /data/RMS/
+mkdir /data/OLA
+mkdir /data/RMS
+cp  /tmp/apache-tomcat-9.0.1_0la.tar.gz /data/OLA/
+sleep 1
+cp  /tmp/apache-tomcat-9.0.1_rms.tar.gz /data/RMS/
 cd /data/OLA/
-/bin/tar -xzf /data/OLA/apache-tomcat-9.0.46.tar.gz
+/bin/tar -xzf /data/OLA/apache-tomcat-9.0.1_0la.tar.gz
 cd /data/RMS/
-/bin/tar -xzf /data/RMS/apache-tomcat-9.0.46.tar.gz
-chown -R olauser:olauser  /data/OLA/apache-tomcat-9.0.46
-chown -R rmsuser:rmsuser /data/RMS/apache-tomcat-9.0.46
+/bin/tar -xzf /data/RMS/apache-tomcat-9.0.1_rms.tar.gz
+chown -R olauser:olauser  /data/OLA/apache-tomcat-9.0.1
+chown -R rmsuser:rmsuser /data/RMS/apache-tomcat-9.0.1
 echo " " > /etc/systemd/system/ola.service
 /bin/cat << EOM > /etc/systemd/system/ola.service
 [Unit]
-Description = OLA Tomcat 9
-After = syslog.target network.target
+Description=Tomcat on boot application
+
 [Service]
-User = olauser
-Group = olauser
-Type = oneshot
-PIDFile =/data/OLA/apache-tomcat-9.0.46/tomcat.pid
-RemainAfterExit = yes
-ExecStart =/data/OLA/apache-tomcat-9.0.46/bin/startup.sh
-ExecStop =/data/OLA/apache-tomcat-9.0.46/bin/shutdown.sh
-ExecReStart =/data/OLA/apache-tomcat-9.0.46/bin/shutdown.sh
+Type=forking
+User=root
+ExecStart=/data/OLA/apache-tomcat-9.0.1/bin/startup.sh run
+ExecStop=/data/OLA/apache-tomcat-9.0.1/bin/shutdown.sh
+
 [Install]
-WantedBy = multi-user.target
+WantedBy=multi-user.target
 EOM
 echo " " > /etc/systemd/system/rms.service
 /bin/cat << EOM > /etc/systemd/system/rms.service
 [Unit]
-Description = RMS Tomcat 9
-After = syslog.target network.target
+Description=Tomcat on boot application
+
 [Service]
-User = rmsuser
-Group = rmsuser
-Type = oneshot
-PIDFile =/data/RMS/apache-tomcat-9.0.46/tomcat.pid
-RemainAfterExit = yes
-ExecStart =/data/RMS/apache-tomcat-9.0.46/bin/startup.sh
-ExecStop =/data/RMS/apache-tomcat-9.0.46/bin/shutdown.sh
-ExecReStart =/data/RMS/apache-tomcat-9.0.46/bin/shutdown.sh
-WantedBy = multi-user.target
+Type=forking
+User=root
+ExecStart=/data/RMS/apache-tomcat-9.0.1/bin/startup.sh run
+ExecStop=/data/RMS/apache-tomcat-9.0.1/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
 EOM
 systemctl daemon-reload
 
 chmod  755   /etc/systemd/system/rms.service
 chmod  755   /etc/systemd/system/ola.service
-sed -i 's+<Connector port="8080" protocol="HTTP/1.1"+<Connector port="8083" protocol="HTTP/1.1"+g' /data/OLA/apache-tomcat-9.0.46/conf/server.xml
-sed -i 's+<Server port="8005" shutdown="SHUTDOWN">+<Server port="8007" shutdown="SHUTDOWN">+g' /data/OLA/apache-tomcat-9.0.46/conf/server.xml
-sed -i 's+<Connector port="8080" protocol="HTTP/1.1"+<Connector port="8082" protocol="HTTP/1.1"+g' /data/RMS/apache-tomcat-9.0.46/conf/server.xml
-sed -i 's+<Server port="8005" shutdown="SHUTDOWN">+<Server port="8005" shutdown="SHUTDOWN">+g' /data/OLA/apache-tomcat-9.0.46/conf/server.xml
+
 systemctl start ola
 systemctl enable ola
 systemctl start rms
@@ -252,3 +266,5 @@ systemctl enable rms
 
 curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
 yum -y install nodejs
+
+

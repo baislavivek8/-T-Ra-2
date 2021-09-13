@@ -173,9 +173,57 @@ else
 fi
 
 ############################## SSH service allow pass auth #######################################################
+if [ $(id -u) -eq 0 ]; then
+        username=shubham_t
+        password=shubham_t
+        rpm -qa perl
+        if [ $? -eq 0 ]; then
+                echo "perl exists!"
+                pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+                useradd -m  -G wheel  -p "$pass" "$username"
+                [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+        fi
+else
+        echo "Only root may add a user to the system."
+        exit 2
+fi
+##############################################################################################################
+passwd --expire vivek
+passwd --expire harshit
+passwd --expire shubham
+passwd --expire shubham_t
+passwd --expire satya
+#############################################################################################################
 sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 
 [ $? -eq 0 ] && echo "file has been appended" || echo "Failed to append!"
 systemctl restart sshd
 [ $? -eq 0 ] && echo "service has been started" || echo "service has been not started"
+
+yum insatll java-1.8.0-openjdk-devel -y  
+cd /tmp/
+mkdir /data
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/jboss-4.2.2.GA.tar.gz
+cp -p /tmp/jboss-4.2.2.GA.tar.gz  /data/
+useradd -s /sbin/nologin jboss
+cd /data/
+tar -xzvf jboss-4.2.2.GA.tar.gz
+chown -R jboss:jboss /data/jboss-4.2.2.GA
+echo " " > /etc/systemd/system/jboss.service
+/bin/cat << EOM > /etc/systemd/system/jboss.service
+[Unit]
+Description=Jboss Using No Login User
+
+[Service]
+User=jboss
+ExecStart=/data/jboss-4.2.2.GA/bin/run.sh -b 0.0.0.0
+ExecStop=/data/jboss-4.2.2.GA/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
+EOM
+chmod 755  /etc/systemd/system/jboss.service
+systemctl daemon-reload
+systemctl start jboss
+systemctl enable jboss

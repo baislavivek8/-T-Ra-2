@@ -119,7 +119,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G superadmin  -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -134,7 +134,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G wheel  -p "$pass" "$username"
+                useradd -m  -G admin -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -164,7 +164,7 @@ if [ $(id -u) -eq 0 ]; then
         if [ $? -eq 0 ]; then
                 echo "perl exists!"
                 pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-                useradd -m  -G admin -p "$pass" "$username"
+                useradd -m  -G admin  -p "$pass" "$username"
                 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
         fi
 else
@@ -201,27 +201,26 @@ echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 systemctl restart sshd
 [ $? -eq 0 ] && echo "service has been started" || echo "service has been not started"
 
-
-
-############# Install mysql 5.5 for weaver ###################################
-cd /usr/local/
-wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.5.46-linux2.6-x86_64.tar.gz
-tar -zxf mysql-5.5.46-linux2.6-x86_64.tar.gz
-yum -y install libaio
-mv mysql-5.5.46-linux2.6-x86_64 mysql
-groupadd mysql
-useradd -r -g mysql mysql
+#####################DGW###################################
+yum install wget -y
+mkdir /data
+mkdir /data/DGW
+useradd -s /sbin/nologin mysql
+cd /data/
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/DGW/mysql_5.1.tar.gz
+/bin/tar -xzf /data/mysql_5.1.tar.gz
 chown -R mysql:mysql mysql
-chmod -R 755 mysql
-touch /etc/my.cnf
-cd mysql
-scripts/mysql_install_db --user=mysql
-bin/mysqld_safe --user=mysql &
-cp support-files/mysql.server /etc/init.d/mysqld
-echo "export PATH=${PATH}:/usr/local/mysql/bin" >> /etc/bashrc
-chmod +x /etc/init.d/mysqld
-/etc/init.d/mysqld restart
-systemctl enable mysqld
-bin/mysqladmin -u root password 'SkilRock@123'
+cd /data/DGW
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/DGW/jboss-as-7.1.1.Final.tar.gz
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/DGW/node-v8.11.1-linux-x64.tar.gz
+/bin/tar -xzf /data/DGW/jboss-as-7.1.1.Final.tar.gz
+/bin/tar -xzf /data/DGW/node-v8.11.1-linux-x64.tar.gz
+cd /opt/
+wget https://package-repository-skilrock.s3.ap-south-1.amazonaws.com/DGW/jdk1.7.0_25.tar.gz
+/bin/tar -xzf /opt/jdk1.7.0_25.tar.gz
+
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+yum -y install nodejs
+
 
 

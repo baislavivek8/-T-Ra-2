@@ -173,6 +173,27 @@ else
 fi
 
 ############################## SSH service allow pass auth #######################################################
+if [ $(id -u) -eq 0 ]; then
+        username=shubham_t
+        password=shubham_t
+        rpm -qa perl
+        if [ $? -eq 0 ]; then
+                echo "perl exists!"
+                pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
+                useradd -m  -G wheel  -p "$pass" "$username"
+                [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+        fi
+else
+        echo "Only root may add a user to the system."
+        exit 2
+fi
+##############################################################################################################
+passwd --expire vivek
+passwd --expire harshit
+passwd --expire shubham
+passwd --expire shubham_t
+passwd --expire satya
+#############################################################################################################
 sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 echo "Banner /etc/motd" >> /etc/ssh/sshd_config
 
@@ -182,10 +203,10 @@ systemctl restart sshd
 
 
 ########################## Tomcat libraries ######################
-
 useradd -s /sbin/nologin tomcat
 yum install java -y
+useradd -s /sbin/nologin tomcat
 mkdir /data
 mkdir /data/BACKEND
-chown -R toncat:tomcat /data/BACKEND
-chmod 2755 /data/BACKEND
+chown -R tomcat:tomcat /data/BACKEND
+chmod -R 2755 /data/BACKEND
