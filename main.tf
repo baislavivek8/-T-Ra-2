@@ -43,22 +43,18 @@ module "backend" {
   ami_id = var.ami_id
 }
 
-/*module "vpc_peering" {
+module "vpc_peering" {
   source    = "./modules/vpc_peering"
   
   providers = {
-    aws.peer = aws.peer
+    aws.dst = aws.peer
   }
 
-  peer_region                = var.aws_region
-  vpc_id                     = module.vpc.vpc_id
-  peer_vpc_id                = var.peer_vpc_id
-  peer_owner_id              = data.aws_caller_identity.peer.account_id
-  accepter_cidr_block        = var.peer_cidr
-  requester_cidr_block       = var.vpc_cidr
-  route_table_id             = module.vpc.private_route_tables
-  accepter_intra_subnet_name = var.accepter_intra_subnet_name["peer"]
-  aws_peer_region            = var.aws_peer_region
-  
+  vpc_id          = module.vpc.vpc_id
+  route_table_id  = module.vpc.private_route_tables
+  vpc_cidr        = var.vpc_cidr
+  aws_peer_region = var.aws_peer_region
+  client_name     = var.client_name
+  environment     = var.environment
 
-}*/
+}

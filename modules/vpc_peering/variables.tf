@@ -1,19 +1,18 @@
 variable "vpc_id" {}
 
-variable "peer_vpc_id" {}
-
-variable "peer_owner_id" {}
-
-variable "peer_region" {}
-
-variable "accepter_cidr_block" {}
+variable "vpc_cidr" {}
 
 variable "route_table_id" {}
 
-variable "requester_cidr_block" {}
+variable "aws_peer_region" {
+    description = "Region of the Peer Account"
+}
 
-variable "accepter_intra_subnet_name" {}
+variable "environment" {
+  description = "The name of the environment"
+}
 
-variable "aws_peer_region" {}
-
-variable "aws_region" {}
+variable "client_name" {
+  description = "Name of the project being built"
+  default = "default"
+}

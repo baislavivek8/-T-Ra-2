@@ -7,7 +7,7 @@ variable "aws_region" {
 
 variable "aws_peer_region" {
   description = "The AWS region things are created in"
-  default = "us-east-1"
+  default = "ap-south-1"
 }
 
 variable "az_count" {
@@ -50,10 +50,6 @@ variable "master_password" {
   description = "RDS Master Password "
 }
 
-# variable "alb_account_id" {
-#   description = "Alb account ID wrt. aws regions"
-# }
-
 
 variable "max_prepared_transactions" {
   description = " Value for max_prepared_transactions postgresql parameter"
@@ -81,10 +77,6 @@ variable "peer_cidr" {
   description = "VPC CIDR Block of Peer Account"
 }
 
-/*variable "accepter_intra_subnet_name" {
-  description = "Subnet name of Peer VPC"
-  
-}*/
 
 variable "domain_name" {
   description = "Domain Name to be mapped"
@@ -95,3 +87,5 @@ variable "ami_id" {}
 variable "aws_profile" {
   
 }
+
+variable "aws_peer_profile" {}
