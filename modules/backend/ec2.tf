@@ -1,5 +1,5 @@
 resource "aws_instance" "monitoring" {
-  ami           = "ami-01f940be8f9e88b75"
+  ami           = "ami-098d05eed5fbf51b5"
   instance_type = "t3a.small"
   #user_data     = file("${path.module}/scripts/monitoring.sh")
   disable_api_termination = false
@@ -34,7 +34,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "pam_backend" {
-  ami           = "ami-0515c50fc1a3401cf"
+  ami           = "ami-0422758e5cacfce51"
   instance_type = "t3a.medium"
   #user_data     = file("${path.module}/scripts/pam_backend.sh")
   disable_api_termination = false
@@ -52,7 +52,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "pam_frontend" {
-  ami           = "ami-095939b67fe6e6478"
+  ami           = "ami-00b663b5f3c31ee61"
   instance_type = "t3a.small"
   #user_data     = file("${path.module}/scripts/pam_frontend.sh")
   disable_api_termination = false
@@ -70,7 +70,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "redis_mongo" {
-  ami           = "ami-05fd2fb2990ec8963"
+  ami           = "ami-0b7e3cacf3e96c6f8"
   instance_type = "t3a.small"
   #user_data     = file("${path.module}/scripts/redis_mongo.sh")
   disable_api_termination = false
@@ -88,7 +88,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "weaver_db" {
-  ami           = "ami-08c768b7f27d9786e"
+  ami           = "ami-06ed5ee141d383818"
   instance_type = "t3a.small"
   #user_data     = file("${path.module}/scripts/weaver_db.sh")
   disable_api_termination = false
@@ -142,7 +142,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "ige" {
-  ami           = "ami-092ef730be5ccb607"
+  ami           = "ami-074183e7dcfdd329d"
   instance_type = "t3a.small"
   #user_data     = file("${path.module}/scripts/pam_backend.sh")
   disable_api_termination = false
@@ -178,7 +178,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "web_game" {
-  ami           = "ami-0790138ac905c77ba"
+  ami           = "ami-02fbf64d19ae690d0"
   instance_type = "t3a.large"
   #user_data     = file("${path.module}/scripts/rms_ola.sh")
   disable_api_termination = false
@@ -232,7 +232,7 @@ resource "aws_instance" "rms_ola" {
 }
 
   resource "aws_instance" "portal_web" {
-  ami           = "ami-089bb310c10a7af7c"
+  ami           = "ami-098d05eed5fbf51b5"
   instance_type = "t3a.medium"
   ##user_data     = file("${path.module}/scripts/rms_ola.sh")
   disable_api_termination = false
