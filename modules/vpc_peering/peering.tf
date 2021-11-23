@@ -47,3 +47,11 @@ resource "aws_route" "accepter_route" {
   destination_cidr_block    = var.vpc_cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.requester_connection.id
 }
+
+### Accepter public route 
+resource "aws_route" "accepter_route_2" {
+  provider                  = aws.dst
+  route_table_id            = "rtb-00ca12970b9603a54"
+  destination_cidr_block    = var.vpc_cidr
+  vpc_peering_connection_id = aws_vpc_peering_connection.requester_connection.id
+}
