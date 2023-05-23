@@ -66,7 +66,7 @@ resource "aws_eip" "gw" {
   count = var.az_count
   vpc = true
   depends_on = [
-    "aws_internet_gateway.gw"]
+    aws_internet_gateway.gw]
 
   tags = {
     Name = "${var.client_name}-${var.environment}-nat-IP"

@@ -13,7 +13,7 @@ provider "aws" {
 
 }
 
-provider "aws" {
+/*provider "aws" {
   alias    = "peer"
   region   = var.aws_peer_region
   #shared_credentials_file = "~/.aws/credentials"
@@ -23,4 +23,4 @@ provider "aws" {
   #   # session_name = "Peer Session"
   #   # #external_id = "test"
   # }
-}
+}*/
