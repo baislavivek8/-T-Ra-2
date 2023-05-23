@@ -15,7 +15,7 @@ module "vpc" {
 
 }
 
-module "backend" {
+/*module "backend" {
   source = "./modules/backend"
   account_id   = data.aws_caller_identity.current.account_id
   aws_region = var.aws_region
@@ -36,7 +36,7 @@ module "backend" {
   work_mem = var.work_mem
   audit_trail_enabled = var.audit_trail_enabled
   ami_id = var.ami_id
-}
+}*/
 
 module "vpc_peering" {
   source    = "./modules/vpc_peering"
