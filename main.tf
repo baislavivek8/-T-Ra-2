@@ -21,8 +21,8 @@ module "vpc" {
 
 module "backend" {
   source = "./modules/Ec2"
-  account_id   = data.aws_caller_identity.current.account_id
-  aws_region = var.aws_region
+ # account_id   = data.aws_caller_identity.current.account_id
+  #aws_region = var.aws_region
   client_name   = var.client_name
   #domain_name = var.domain_name
   environment = var.environment

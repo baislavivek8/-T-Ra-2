@@ -7,7 +7,7 @@ variable "client_name" {
   default = "default"
 }
 
-variable "var.instance_count" {
+variable "instance_count" {
   description = "Number of AZs to cover in a given region"
   default = 2
 }
@@ -22,3 +22,7 @@ variable "aws_private_subnet" {
   description = "list aws private subnet IDs"
 }
 variable "ami_id" {}
+variable "vpc_cidr" {
+  description = "VPC CIDR"
+  default = "172.17.0.0/16"
+}
